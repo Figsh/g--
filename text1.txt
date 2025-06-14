@@ -1,1 +1,360 @@
 
+<DOCTYPE html>
+<html><head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EkuStack—MediaStack is a modern social media platform that empowers users to share content, connect with others, and express themselves freely. Whether you’re posting questions, images, or starting conversations, EKS makes it easy and fun to be social. — communities and posts.">
+
+<title>EkuStack—MediaStack webapp</title>
+  <h1 style="display:none;">Ekustack—MediaStack communities and posts.</h1>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise,fetch,FormData"></script>
+<section id="mgnTop"></section>
+    <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      position: fixed;
+      top: 5px;
+      left: 10px;
+      background-color: #34d;
+      color: white;
+      padding: 7px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 4px;
+    }
+
+    .side-menu {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #32d;
+      color: white;
+      transition: left 0.3s ease;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    #menu-toggle:checked ~ .side-menu {
+      left: 0;
+    }
+
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .side-menu ul li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #444;
+    }
+  .side-menu ul a{
+    color:#fff;
+    text-decoration: none;
+  }
+.side-meny
+    .side-menu ul li:hover {
+      background-color: #333;
+      cursor: pointer;
+    }
+  </style>
+
+<body>
+
+  <input type="checkbox" id="menu-toggle" />
+  <label class="menu-icon" for="menu-toggle">&#9776;</label>
+
+  <div class="side-menu">
+    <ul>
+      <a href="../"><li>Home</li></a>
+      <a href="../dashboard/"><li>Dashboard</li></a>
+      <a href="../privacy_policy/"><li>Privacy policy</li></a>
+      <a href="mailto:requestcheck.valtik@gmail.com"><li>Contact</li></a>
+    </ul>
+  </div>
+  <style>
+  /* Global Reset and Box Sizing */
+
+{ box-sizing: border-box; }
+
+form[id*="comment-form"] {
+  border: none; /* Remove the basic border */
+  padding: 15px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 8px; /* Soft rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  margin-bottom: 20px; /* Add some space below the form */
+}
+
+form[id*="comment-form"] button {
+  background: #4CAF50; /* A more vibrant button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+form[id*="comment-form"] button:hover {
+  background-color: #45a049;
+}
+
+form[id*="comment-form"] textarea {
+  border: 1px solid #ddd; /* Light grey border */
+  padding: 10px;
+  height: 40px; /* More space for typing */
+  width: calc(100% - 22px); /* Adjust width for padding and border */
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 10px; /* Space above the button */
+}
+
+form[id*="comment-form"] textarea::placeholder {
+  color: #aaa; /* Style the placeholder text */
+}
+input[id*="commenterName-"]{
+  border: 0.1px solid #ddd;
+  outline: 0;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+}
+  label[for*="commenterName-"]{
+    color: #999;
+    font-size: 13px;
+  }
+.comment-section {
+  border: 1px solid #eee; /* Lighter border */
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff; /* White background for comments */
+}
+
+.comment-section .comment-button {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 20px 50px 30px 2rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.comment-button:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+
+/* Body Styles */ body { margin: 0; font-family: Arial, sans-serif; background-color: #0066FF; color: #001100; }
+
+/* Fixed Search Box */ #schBox { position: fixed; background-color: #0066FF; top: 0; z-index: 99; width: 100%; box-shadow: 0 1px #00f; padding: 2%; }
+
+    #valOrgs{ 
+      max-height: 115px;
+Overflow-x: auto;
+      overflow-y: hidden;
+white-space: nowrap;
+    } 
+#schInp { border: 2px groove #54f; border-radius: 10px; padding: 5px; margin-left: 35%;}
+
+#schInp:focus { outline: 1px groove #0f9; padding: 7px; }
+
+#mgnTop { margin-top: 20%; }
+
+#com { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 5%; flex-direction: column-reverse; }
+
+
+#readNext a {
+    color: blue;
+    text-decoration: underline double #000;
+    font-weight: 800;
+}
+/* Post Section */ #postsSection { margin-top: 10px; position: relative; border-bottom: 1px solid #fff; border-radius: 0; }
+
+#postsSection h2 { display: flex; justify-content: space-between; align-items: center; color: #ddd; }
+
+
+video[src=""], .cic.img img[src=""], .cic video[src=""], img[src=""]{ display: none; }
+
+
+
+.toggle-link { color: #007BFF; cursor: pointer; display: inline-block; margin-top: 5px; font-size: 0.9em; }
+
+.toggle-link:hover { text-decoration: underline; }
+
+/* Crip Layout */ .crip { display: flex; flex-direction: column; border: 1px solid #ddd; border-radius: 10px; margin: 1em auto; overflow: hidden; background-color: #fff; max-width: 800px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: transform 0.2s; width: 97%; }
+
+.crip:hover { transform: scale(1.01); }
+
+.crip:hover .cic.txt p { white-space: normal; }
+
+.cic.txt { padding: 1em; color: #777; }
+
+.cic.txt p { margin: 0.5em 0; color: #647; white-space: normal; }
+
+.owner { display: flex; align-items: center; margin-top: 1em; }
+
+.owner img { width: 32px; height: 32px; border-radius: 50%; margin-right: 0.5em; }
+
+.owner-name { font-style: italic; color: #779; font-size: 12px; }
+
+@media (min-width: 600px) { .crip { flex-direction: row; }
+
+.cic.img { flex: 1; }
+
+.cic.txt { flex: 2; } }
+
+@media (max-width: 600px) { #bodyViewer section { flex-direction: column; align-items: center; text-align: center; }
+
+#bodyViewer img { margin-bottom: 16px; }
+
+.crip { flex-direction: column; width: 95%; } }
+
+a { color: inherit; text-decoration: none; }
+
+/* VCard */ b#vcard { position: absolute; top: 0.2em; right: 0.5em; font-size: 0.75em; font-weight: bold; text-transform: uppercase; color: white; background-color: rgba(0, 0, 0, 0.6); padding: 2px 6px; border-radius: 3px; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); z-index: 1; pointer-events: none; }
+
+/* Comments */ .comment-section h3 { color: #333; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; border: 0.8px groove; border-radius: 0 50% 30px 10rem; display: inline-block; padding: 0 2px; }
+
+.comment-section > div { padding: 10px 0; border-bottom: 1px dashed #ddd; }
+
+.comment-section > div:last-child { border-bottom: none; }
+
+.comment-section strong { font-weight: bold; color: #555; margin-right: 5px; }
+
+.comment-section p { margin: 5px 0; color: #666; }
+
+.comment-section bdo { display: ; }
+
+.comment-section:hover bdo { display: block; }
+
+.click-count { font-size: 10px; color: #359; }
+
+.vote-controls { margin-top: 10px; border-radius: 10px; border: 0; }
+
+.vote-controls button { margin: 0 5px; padding: 0px 8px; cursor: pointer; border: 0; background: #eee; border-radius: 7px 0 7px 0; }
+
+/* Block Page Overlay */ #blockPage { position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(23, 20, 30, 0.9); z-index: 999999999999; }
+
+#blockPage button { position: absolute; margin-block-start: -59%; margin-left: 33.5%; width: 120px; height: 90px; border-radius: 3% 3% 100% 100%; background: #0066dd; border: 0; font-weight: 800; font-size: 24px; color: #0088dd; border-right: 1px solid #68f; border-left: 1px solid #77f; }
+
+#blockPage div { border: 8px dashed #0033ff; width: 100px; height: 100px; margin: 34%; margin-top: 60%; border-radius: 100%; animation: blocker 4s linear infinite; border-bottom-color: #44f; }
+
+@keyframes blocker { 0% { rotate-x: 0; transform: rotate(0deg); } 100% { rotate-x: -360deg; transform: rotate(360deg); } }
+
+#blockPage div:before { content: ""; rotate: 0deg; animation: noRot 2s linear infinite; }
+
+@keyframes noRot { 0% { rotate: 0; transform: rotateY(0deg); } 100% { rotate: -360deg; transform: rotateY(-360deg); } }
+
+
+    #bodyViewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 300;
+    }
+
+    #bodyViewer section {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    #bodyViewer img {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      background-color: #e0e0e0;
+    }
+
+    #bodyViewer h4 {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    #bodyViewer p {
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    #orgStats {
+      color: #888;
+      font-weight: normal;
+    }
+
+    #backBtn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 2em;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    @media (max-width: 600px) {
+      #bodyViewer section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      #bodyViewer img {
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script type="module" defer>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzSd1j52M1gx27Wa8b0o7XPL4kejM7ilc",
+      authDomain: "imad-4bcd4.firebaseapp.com",
+      projectId: "imad-4bcd4",
+      storageBucket: "imad-4bcd4.firebasestorage.app",
+      messagingSenderId: "337645433222",
+      appId: "1:337645433222:web:f66274356a7ba3bc39bc07",
+      measurementId: "G-RP7VQ7PT4C"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+
+    const visitorsCollection = collection(db, "ginidev");

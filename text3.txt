@@ -1,1 +1,68 @@
 
+const formatTimestamp = (timestamp) => {
+    if (!timestamp || !timestamp.toDate) return 'Just now';
+    const date = timestamp.toDate();
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+
+    if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    return date.toLocaleDateString();
+  };
+
+  const displayComments = (itemId, comments) => {
+    const commentsContainer = document.getElementById(`comments-${itemId}`);
+    if (commentsContainer) {
+      commentsContainer.innerHTML = '';
+      comments.forEach(commentData => {
+        const commentDiv = document.createElement('div');
+        commentDiv.innerHTML = `<p><strong>${commentData.commenterName || 'Anonymous'}</strong> <small>(${formatTimestamp(commentData.createdAt)})</small>: ${commentData.text}</p>`;
+        commentsContainer.appendChild(commentDiv);
+      });
+    }
+  };
+
+  onSnapshot(q, (snapshot) => {
+    document.getElementById("com").innerHTML = '';
+    snapshot.forEach((docSnap) => {
+      const visitorData = docSnap.data();
+      const itemId = docSnap.id;
+      const newDiv = document.createElement('div');
+
+      newDiv.innerHTML = `
+      <h2 style="display: none;">${visitorData.productNameInput+'by —'+visitorData.usernameInput}</h2>
+        <div class="cic img"><a href=${visitorData.imagelinkInput}>
+          <img src="${visitorData.imagelinkInput}" alt="valtik_org_icon"></a>
+          <a href="${visitorData.actionurlInput}"></a>
+        </div>
+        <button id="viewPost" onclick="viewPost(this);" style="background:eee;border:0;">📖Read</button>
+        <div class="cic txt">
+          <p><b>${visitorData.productNameInput.replace(/\</g, '&lt;')}</b></p>
+          <p class="prodDes">
+          ${visitorData.productDescriptionInput.slice(0, 120)}
+            ${visitorData.productDescriptionInput}
+
+          </p>
+          <b style="display:none;visibility:hidden;">@${visitorData.usernameInput} @${visitorData.productNameInput.replace(/\</g, '&lt;')} #${visitorData.productNameInput.replace(/\</g, '&lt;')}</b>
+          <div class="owner" onclick="viewOrg(this)">
+            <img src="${visitorData.profImg}" alt="giniorg_admin photo">
+            <span class="owner-name"><b>@${visitorData.usernameInput} <a href="../dashboard"> <small>_v</small></a></b></span>
+          </div>
+          <p class="click-count" id="click-count-${itemId}">${visitorData.clicks || 0} VIEWS</p>
+          <div class="vote-controls">
+            <button class="upvote-btn" data-id="${itemId}">⬆ Upvote</button>
+            <span id="upvotes-${itemId}">${visitorData.upvotes || 0}</span>
+            <button class="downvote-btn" data-id="${itemId}">⬇   </button>
+            <span id="downvotes-${itemId}">${visitorData.downvotes || 0}</span>${visitorData.actionurlInput? '<a href="'+visitorData.actionurlInput+'"><button class="learn-more" style="border:0.3px groove #43f;border-radius:5px;box-shadow: 0 0 0.5px #000;background:rgba(255,255,300,0.2);color: #97a;">Learn More </button></a>':''}
+          </div>
+        </div>
+        <div class="comment-section">
+          <button type="button" class="">comments 💬</button>
+          <bdo>
+            <div id="comments-${itemId}"></div>
+            <form id="comment-form-${itemId}">
+              <div>
+                <label for="commenterName-${itemId}">Your Name (Optional):</label>
+                <input type="text" id="commenterName-${itemId}" name="commenterName">
+              </div>

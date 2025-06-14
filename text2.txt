@@ -1,1 +1,111 @@
+const nextPosts = document.getElementById('readNext');
 
+    onSnapshot(orgQuery, (snapshot) => {
+      nextPosts.innerHTML = "";
+      snapshot.forEach((docSnap) => {
+        const orgData = docSnap.data();
+        const org = document.createElement("div");
+        let nextLink = orgData.productNameInput.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-');
+        
+        org.innerHTML = `<p><a href="../${nextLink}">${orgData.productNameInput}</a>`;
+        
+        nextPosts.appendChild(org);
+      });
+    });
+
+  </script>
+<body style="background-color:#001201;color:#211001;">
+  <section id="schBox">
+    <input type="search" id="schInp" placeholder="search...">
+  </section>
+  <section id="com">
+    
+    
+    
+  </section>
+  <style>
+body {
+      background-color: #0066FF;
+      color: #001100;
+      font-family: Arial, sans-serif;
+    }
+
+    #schBox {
+      position: fixed;
+      background-color: #0066FF;
+      top: 0%;
+      z-index: 99;
+      width: 100%;
+      box-shadow: 0 1px #00f;
+      text-align: ;
+      padding: 2%;
+      display: none;
+    }
+
+    #schInp {
+      border: 0.2em groove #54f;
+      border-radius: 10px;
+      padding: 0.3rem;
+    }
+
+    #schInp:focus {
+      outline: 1px groove #0f9;
+      padding: 0.4rem;
+    }
+
+    #mgnTop {
+      margin-top: 15%;
+    }
+
+    #com {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3%;
+      flex-direction: Column-reverse;
+    }
+
+          
+
+  </style>
+ 
+    
+   <section id="crd">
+ <a href="../com/esbot.html#user-input"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" width="30px" height="30px"></a>
+   </section>
+  <form id="visitorForm" style="" hidden="">
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br><br>
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <ul id="visitorList">
+    </ul>
+<script type="module" defer>
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, doc, updateDoc, increment, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBzSd1j52M1gx27Wa8b0o7XPL4kejM7ilc",
+    authDomain: "imad-4bcd4.firebaseapp.com",
+    projectId: "imad-4bcd4",
+    storageBucket: "imad-4bcd4.firebasestorage.app",
+    messagingSenderId: "337645433222",
+    appId: "1:337645433222:web:f66274356a7ba3bc39bc07",
+    measurementId: "G-RP7VQ7PT4C"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const visitorsCollection = collection(db, "ginidev");
+  const commentsCollection = collection(db, "comments");
+
+  let currentUserName = null;
+
+  onAuthStateChanged(auth, (user) => {
+    currentUserName = user ? (user.displayName || `user_v${user.uid.slice(0,5)}${user.email.slice(0,4)}` || "Anonymous") : null;
+  });

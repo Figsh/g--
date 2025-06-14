@@ -1,1 +1,290 @@
 
+ <button type="submit">Post Comment</button>
+            </form>
+          </bdo>
+        </div>
+      `;
+      newDiv.className = 'crip';
+      document.getElementById("com").appendChild(newDiv);
+
+      // Hide name input if user is logged in
+      if (currentUserName) {
+        const nameInputField = newDiv.querySelector(`#commenterName-${itemId}`);
+        if (nameInputField) nameInputField.parentElement.style.display = 'none';
+      }
+
+      // Click tracking
+      newDiv.addEventListener('click', (event) => {
+        if (event.target.closest('.comment-section')) return;
+        const clickedItems = JSON.parse(localStorage.getItem('clickedItems') || '[]');
+        if (clickedItems.includes(itemId)) return;
+
+        const itemRef = doc(db, "ginidev", itemId);
+        updateDoc(itemRef, { clicks: increment(1) })
+          .then(() => {
+            clickedItems.push(itemId);
+            localStorage.setItem('clickedItems', JSON.stringify(clickedItems));
+          })
+          .catch(console.error);
+      });
+
+      // Live click and vote updates
+      const itemRef = doc(db, "ginidev", itemId);
+      onSnapshot(itemRef, (docUpdate) => {
+        const updatedData = docUpdate.data();
+        document.getElementById(`click-count-${itemId}`).textContent = `${updatedData.clicks || 0} VIEWS`;
+        document.getElementById(`upvotes-${itemId}`).textContent = updatedData.upvotes || 0;
+        document.getElementById(`downvotes-${itemId}`).textContent = updatedData.downvotes || 0;
+      });
+
+      // Comments
+      const commentsQuery = query(collection(db, "comments"), orderBy("createdAt", "asc"));
+      onSnapshot(commentsQuery, (commentsSnapshot) => {
+        const itemComments = [];
+        commentsSnapshot.forEach((commentDoc) => {
+          if (commentDoc.data().itemId === itemId) {
+            itemComments.push(commentDoc.data());
+          }
+        });
+        displayComments(itemId, itemComments);
+      });
+
+      const commentForm = document.getElementById(`comment-form-${itemId}`);
+      if (commentForm) {
+        commentForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const commentText = commentForm.querySelector('textarea').value.replace(/-i\(([^\{\}\[\]\(\)\|]*)\s?\|([^\(\)]*)\)/gi,"+$+img src='$1' alt=$2//:-").replace(/-v\(([^\{\}\[\]\(\)\|]*)\s?\|([^\(\)]*)\)/gi,'+$+video autoplay muted loop src="$1" id=valvideo-$2/:- +$+/video/:-').replace(/\*\*(.*?)\*\*/g, "+$+b/:-$1+$+/b/:-").replace(/```([\s\S]*?)```/g, " +$+pre/:- +$+code/:-$1+$+/code/:- +$+/pre/:-").replace(/`(.*?)`/g, "+$+code/:-+$+mark style='background:#ddd;border-radius:2px;'/:-$1+$+/mark/:-+$+/code/:-").replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\/\:\-/gi, '>').replace(/\+\$\+/gi, '<').replace(/\n/g, '<br>').replace(/\s{2}/g,'&ensp;');
+          let commenterName = currentUserName || commentForm.querySelector(`#commenterName-${itemId}`).value.trim() || 'Anonymous';
+
+          if (commentText) {
+            addDoc(commentsCollection, {
+              itemId,
+              text: commentText,
+              commenterName,
+              createdAt: new Date()
+            }).then(() => {
+              commentForm.querySelector('textarea').value = '';
+              const nameInput = commentForm.querySelector(`#commenterName-${itemId}`);
+              if (nameInput) nameInput.value = '';
+            }).catch(console.error);
+          }
+        });
+      }
+
+      // Voting
+      const upvoteBtn = newDiv.querySelector(`.upvote-btn[data-id="${itemId}"]`);
+      const downvoteBtn = newDiv.querySelector(`.downvote-btn[data-id="${itemId}"]`);
+      const votedItems = JSON.parse(localStorage.getItem('votedItems') || '{}');
+
+      if (votedItems[itemId]) {
+        upvoteBtn.disabled = votedItems[itemId] === 'up';
+        downvoteBtn.disabled = votedItems[itemId] === 'down';
+      }
+
+      upvoteBtn.addEventListener("click", () => {
+        if (votedItems[itemId]) return;
+        updateDoc(itemRef, { upvotes: increment(1) }).then(() => {
+          votedItems[itemId] = 'up';
+          localStorage.setItem('votedItems', JSON.stringify(votedItems));
+          upvoteBtn.disabled = true;
+          downvoteBtn.disabled = true;
+        });
+      });
+
+      downvoteBtn.addEventListener("click", () => {
+        if (votedItems[itemId]) return;
+        updateDoc(itemRef, { downvotes: increment(1) }).then(() => {
+          votedItems[itemId] = 'down';
+          localStorage.setItem('votedItems', JSON.stringify(votedItems));
+          upvoteBtn.disabled = true;
+          downvoteBtn.disabled = true;
+        });
+      });
+
+    });
+  });
+</script>
+<script>
+  
+  function viewPost(btn) {
+  const postContainer = btn.parentElement;
+  postContainer.style.cssText = `
+    position: fixed; 
+    top: 10%; 
+    left: 2%; 
+    right: 2%; 
+    bottom: 5%; 
+    padding-bottom: 5%;
+    overflow: scroll;
+  `;
+  btn.textContent = "📕Close";
+  btn.onclick = () => closeViewedPost(btn); // Assign a function, not the result
+}
+
+function closeViewedPost(btn) {
+  const postContainer = btn.parentElement;
+  postContainer.style.cssText = ''; // Reset to original
+  btn.textContent = "📖Read";
+  btn.onclick = () => viewPost(btn); // Restore original handler
+}
+  const schInp = document.querySelector("#schInp");
+  const comm = document.querySelector("#com");
+
+  schInp.addEventListener("input", () => {
+    const searchTerm = schInp.value.trim().toUpperCase();
+    const allCripElements = comm.querySelectorAll(".crip");
+
+    let matchFound = false;
+
+    allCripElements.forEach((el) => {
+      if (el.innerText.toUpperCase().includes(searchTerm)) {
+        el.style.display = "";
+        matchFound = true;
+      } else {
+        el.style.display = "none";
+      }
+    });
+
+    // If no matches, display fallback message
+    if (!matchFound) {
+      comm.innerHTML = `<p><a href=""><button>back</button></a></p><p>No matching results found.</p>`;
+    }
+  });
+</script>
+
+  <script async>
+    function viewOrg(button) {
+      const container = button.closest('.crip');
+      const name = container.querySelector('.owner-name').innerText;
+      const imgSrc = container.querySelector('.owner img').src;
+const websit = container.querySelector('a').href;
+      const bodyViewer = document.getElementById('bodyViewer');
+
+      bodyViewer.innerHTML = `
+        <button id="backBtn" onclick="closeViewer()">×</button>
+        <section>
+          <div style="
+  background: #007bff url('${imgSrc}') no-repeat center/cover;
+  background-blend-mode: multiply;
+  width: 99%;
+  margin-block-start: -3px;
+  padding-top: 15px;
+  padding-bottom: 0;
+  border-radius: 10px;
+  height: 100px;line-height: 20px;">
+<img src="${imgSrc}" alt="org preview" /></div>
+          <div>
+            <h4>${name.slice(1,-2)}</h4>
+                          <p id="orgBio"><b>About This Organization</b><br>
+Welcome to the official profile of <b>${name.slice(1,-2)}</b>. We're proud to be part of a growing network of professionals and teams using <b>ValTik</b> to connect, collaborate, and create impact. Stay tuned for updates, projects, and opportunities to engage with us.</p>
+              <p><b id="orgStats">_ views</b> <b id="orgStats">_ posts</b></p>
+      <br>
+      <a href="${websit}" id=orgStats>🌐 ${websit.replace(/go\:.*/gi,"https://app.esk.io/pst?id=a3fd4599ec1edcde")}</a>
+          </div>
+        </section>
+      `;
+
+      bodyViewer.style.display = 'block';
+    }
+
+    function closeViewer() {
+      const viewer = document.getElementById('bodyViewer');
+      viewer.style.display = 'none';
+      viewer.innerHTML = ''; // optional: clean up
+    }
+  document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("read-toggle")) {
+    e.preventDefault();
+    const parent = e.target.closest(".prodDes");
+    const shortText = parent.querySelector(".short-text");
+    const fullText = parent.querySelector(".full-text");
+    const isExpanded = fullText.style.display === "block";
+    fullText.style.display = isExpanded ? "none" : "block";
+    shortText.style.display = isExpanded ? "inline" : "none";
+    e.target.textContent = isExpanded ? "Read More" : "Show Less";
+  }
+});
+  </script>
+  <bdo id="bodyViewer">
+    
+  </bdo>
+
+          <section id="blockPage">
+    <div></div>
+            <button style="display:none;">.V.</button>
+          </section>
+  
+  <script>
+  let blockPage = document.getElementById('blockPage');
+  window.addEventListener('load', e=>{
+    blockPage.style.display = 'none';
+  });
+  </script>
+
+
+<section id="moreFromUser" style="background-color:#ddd;">
+    <h4>More from User</h4>
+    <div id="readNext"></div>
+    
+</section>
+
+<section>
+    <h1></h1>
+</section>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer b {
+      margin-top: 3em;
+      display: block;
+      margin-bottom: 7px;
+      font-size: 1.2em;
+    }
+
+    footer a {
+      color: #aaa;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    footer span{
+      font-size: 0.9em;
+     } 
+    .learn-more {
+      border: 0.2px solid #54f;
+      border-radius: 5px;
+    } 
+  </style>
+
+  
+
+  <footer id="pageEndPoint">
+    <p><a href="../#pageEndPoint"><b>Ekustack—MediaStack</b><span> is a modern social media platform that empowers users to share content, connect with others, and express themselves freely. Whether you’re posting questions, images, or starting conversations, ESTK—MSTK makes it easy and fun to be social.</a></span></p>
+    <a href="../privacy_policy/">Privacy Policy</a>
+    <a href="../terms/">Terms of Use</a>
+    <a href="mailto:requestcheck.valtik@gmail.com">Contact</a><pre><i>©2025</i></pre>
+  </footer>
+</body>
+</html>

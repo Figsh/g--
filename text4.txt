@@ -231,6 +231,8 @@ Welcome to the official profile of <b>${name.slice(1,-2)}</b>. We're proud to be
 <section>
     <h1></h1>
 </section>
+<script async="async" data-cfasync="false" src="//pl26924854.profitableratecpm.com/21e25b6a0ed2390d0fc157e7d872cc1f/invoke.js"></script>
+<div id="container-21e25b6a0ed2390d0fc157e7d872cc1f"></div>
   <style>
     body {
       margin: 0;

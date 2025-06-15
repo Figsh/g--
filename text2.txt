@@ -71,7 +71,7 @@ body {
  
     
    <section id="crd">
- <a href="../com/esbot.html#user-input"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" width="30px" height="30px"></a>
+ <a href="../../com/esbot.html#user-input"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" width="30px" height="30px"></a>
    </section>
   <form id="visitorForm" style="" hidden="">
     <label>Name:</label><br>

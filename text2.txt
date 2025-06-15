@@ -5,9 +5,9 @@ const nextPosts = document.getElementById('readNext');
       snapshot.forEach((docSnap) => {
         const orgData = docSnap.data();
         const org = document.createElement("div");
-        let nextLink = orgData.productNameInput.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-');
+        let nextLink = orgData.postLink || "";
         
-        org.innerHTML = `<p><a href="../post/${nextLink}.html">${orgData.productNameInput}</a>`;
+        org.innerHTML = `<p><a href="../../${nextLink}.html">${orgData.productNameInput}</a>`;
         
         nextPosts.appendChild(org);
       });

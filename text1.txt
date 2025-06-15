@@ -224,9 +224,9 @@ video[src=""], .cic.img img[src=""], .cic video[src=""], img[src=""]{ display: n
 
   <div class="side-menu">
     <ul>
-      <a href="../"><li>Home</li></a>
-      <a href="../dashboard/"><li>Dashboard</li></a>
-      <a href="../privacy_policy/"><li>Privacy policy</li></a>
+      <a href="../../"><li>Home</li></a>
+      <a href="../../dashboard/"><li>Dashboard</li></a>
+      <a href="../../privacy_policy/"><li>Privacy policy</li></a>
       <a href="mailto:requestcheck.valtik@gmail.com"><li>Contact</li></a>
     </ul>
   </div>

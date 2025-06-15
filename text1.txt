@@ -1,10 +1,5 @@
 
-<DOCTYPE html>
-<html><head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EkuMedia is a modern social media platform that empowers users to share content, connect with others, and express themselves freely. Whether you’re posting questions, images, or starting conversations, EKS makes it easy and fun to be social. — communities and posts.">
 
-<title>EkuMedia user post</title>
   <h1 style="display:none;">Ekustack—MediaStack communities and posts.</h1>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise,fetch,FormData"></script>
 <section id="mgnTop"></section>

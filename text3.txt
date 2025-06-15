@@ -40,8 +40,7 @@ const formatTimestamp = (timestamp) => {
         <div class="cic txt">
           <p><b>${visitorData.productNameInput.replace(/\</g, '&lt;')}</b></p>
           <p class="prodDes">
-          ${visitorData.productDescriptionInput.slice(0, 120)}
-            ${visitorData.productDescriptionInput}
+${visitorData.productDescriptionInput}
 
           </p>
           <b style="display:none;visibility:hidden;">@${visitorData.usernameInput} @${visitorData.productNameInput.replace(/\</g, '&lt;')} #${visitorData.productNameInput.replace(/\</g, '&lt;')}</b>

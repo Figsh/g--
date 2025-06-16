@@ -1,3 +1,4 @@
+<link rel="icon" href="https://raw.githubusercontent.com/ekustack/ekustack.github.io/refs/heads/marster/com/download%20(1).png" type="image/png">
 
 
   <h1 style="display:none;">Ekustack—MediaStack communities and posts.</h1>

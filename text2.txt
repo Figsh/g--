@@ -5,9 +5,9 @@ const nextPosts = document.getElementById('readNext');
       snapshot.forEach((docSnap) => {
         const orgData = docSnap.data();
         const org = document.createElement("div");
-        let nextLink = orgData.postLink || "";
+        let nextLink = orgData.postLink || "#search?q="+encodeURI(orgData.productNameInput);
         
-        org.innerHTML = `<p><a href="../../${nextLink}.html">${orgData.productNameInput}</a>`;
+        org.innerHTML = `<p><a href="../../${nextLink}">${orgData.productNameInput}</a>`;
         
         nextPosts.appendChild(org);
       });

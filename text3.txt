@@ -57,7 +57,7 @@ ${visitorData.productDescriptionInput}
           </div>
         </div>
         <div class="comment-section">
-          <button type="button" class="comments-button">comments 💬</button>
+          <button type="button" class="comment-button">comments 💬</button>
           <bdo>
             <div id="comments-${itemId}"></div>
             <form id="comment-form-${itemId}">

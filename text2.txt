@@ -14,75 +14,7 @@ const nextPosts = document.getElementById('readNext');
     });
 
   </script>
-<body style="background-color:#001201;color:#211001;">
-  <section id="schBox">
-    <input type="search" id="schInp" placeholder="search...">
-  </section>
-  <section id="com">
-    
-    
-    
-  </section>
-  <style>
-body {
-      background-color: #0066FF;
-      color: #001100;
-      font-family: Arial, sans-serif;
-    }
 
-    #schBox {
-      position: fixed;
-      background-color: #0066FF;
-      top: 0%;
-      z-index: 99;
-      width: 100%;
-      box-shadow: 0 1px #00f;
-      text-align: ;
-      padding: 2%;
-      display: none;
-    }
-
-    #schInp {
-      border: 0.2em groove #54f;
-      border-radius: 10px;
-      padding: 0.3rem;
-    }
-
-    #schInp:focus {
-      outline: 1px groove #0f9;
-      padding: 0.4rem;
-    }
-
-    #mgnTop {
-      margin-top: 15%;
-    }
-
-    #com {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 3%;
-      flex-direction: Column-reverse;
-    }
-
-          
-
-  </style>
- 
-    
-   <section id="crd">
- <a href="../../com/esbot.html#user-input"><img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" width="30px" height="30px"></a>
-   </section>
-  <form id="visitorForm" style="" hidden="">
-    <label>Name:</label><br>
-    <input type="text" id="name" required><br><br>
-    <label>Email:</label><br>
-    <input type="email" id="email" required><br><br>
-    <button type="submit">Submit</button>
-  </form>
-
-  <ul id="visitorList">
-    </ul>
 <script type="module" defer>
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, doc, updateDoc, increment, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";

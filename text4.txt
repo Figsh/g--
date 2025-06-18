@@ -205,15 +205,8 @@ Welcome to the official profile of <b>${name.slice(1,-2)}</b>. We're proud to be
   }
 });
   </script>
-  <bdo id="bodyViewer">
-    
-  </bdo>
-
-          <section id="blockPage">
-    <div></div>
-            <button style="display:none;">.V.</button>
-          </section>
   
+
   <script>
   let blockPage = document.getElementById('blockPage');
   window.addEventListener('load', e=>{
@@ -222,71 +215,3 @@ Welcome to the official profile of <b>${name.slice(1,-2)}</b>. We're proud to be
   </script>
 
 
-<section id="moreFromUser" style="background-color:#ddd;">
-    <h4>More from User</h4>
-    <div id="readNext"></div>
-    
-</section>
-
-<section>
-    <h1></h1>
-</section>
-<script async="async" data-cfasync="false" src="//pl26924854.profitableratecpm.com/21e25b6a0ed2390d0fc157e7d872cc1f/invoke.js"></script>
-<div id="container-21e25b6a0ed2390d0fc157e7d872cc1f"></div>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-    }
-
-    main {
-      flex: 1;
-      padding: 20px;
-    }
-
-    footer {
-      background-color: #222;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer b {
-      margin-top: 3em;
-      display: block;
-      margin-bottom: 7px;
-      font-size: 1.2em;
-    }
-
-    footer a {
-      color: #aaa;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: white;
-      text-decoration: underline;
-    }
-    footer span{
-      font-size: 0.9em;
-     } 
-    .learn-more {
-      border: 0.2px solid #54f;
-      border-radius: 5px;
-    } 
-  </style>
-
-  
-
-  <footer id="pageEndPoint">
-    <p><a href="/#pageEndPoint"><b>EkuMedia</b><span> is a modern social media platform that empowers users to share content, connect with others, and express themselves freely. Whether you’re posting questions, images, or starting conversations, ESTK—MSTK makes it easy and fun to be social.</a></span></p>
-    <a href="/privacy_policy/">Privacy Policy</a>
-    <a href="/terms/">Terms of Use</a>
-    <a href="mailto:requestcheck.valtik@gmail.com">Contact</a><pre><i>©2025</i></pre>
-  </footer>
-</body>
-</html>

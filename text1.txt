@@ -247,7 +247,7 @@
       margin: 5px 0;
     }
 
-    .crip {
+        .crip {
       display: flex;
       flex-direction: column;
       border: 1px solid #ddd;
@@ -265,20 +265,31 @@
       transform: scale(1.01);
     }
 
-    .crip:hover .cic.txt p {
+    .crip:hover .cic.txt bdi{
       white-space: wrap;
     }
 
     .cic.txt {
       padding: 1em;
-      color: #777;
+      color: #444;
     }
 
-    .cic.txt p {
+    .cic.txt .prodDes{
       margin: 0.5em 0;
-      color: #647;
+      color: #100100;
       white-space: wrap;
+      overflow-wrap: break-word;
     }
+.cic.txt pre{
+  width: 100%;
+  overflow-x: scroll;
+  background: #889;
+  color: #ddd;
+  border-radius: 5px;
+ } 
+    .cic.txt .prodDes a{
+      color: #22d;
+     } 
 
     .owner {
       display: flex;

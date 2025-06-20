@@ -39,10 +39,10 @@ const formatTimestamp = (timestamp) => {
         <button id="viewPost" onclick="viewPost(this);" style="background:eee;border:0;">📖Read</button>
         <div class="cic txt">
           <p><b>${visitorData.productNameInput.replace(/\</g, '&lt;')}</b></p>
-          <p class="prodDes">
+          <div class="prodDes">
 ${visitorData.productDescriptionInput}
 
-          </p>
+          </div>
           <b style="display:none;visibility:hidden;">@${visitorData.usernameInput} @${visitorData.productNameInput.replace(/\</g, '&lt;')} #${visitorData.productNameInput.replace(/\</g, '&lt;')}</b>
           <div class="owner" onclick="viewOrg(this)">
             <img src="${visitorData.profImg}" alt="giniorg_admin photo">

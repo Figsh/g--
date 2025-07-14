@@ -33,7 +33,7 @@ const formatTimestamp = (timestamp) => {
       newDiv.innerHTML = `
       <h2 style="display: none;">${visitorData.productNameInput+'by —'+visitorData.usernameInput}</h2>
         <div class="cic img"><a href=${visitorData.imagelinkInput}>
-          <img src="${visitorData.imagelinkInput}" alt="valtik_org_icon"></a>
+          <img src="${visitorData.imagelinkInput}" alt="valtik_org_icon" onerror="this.onerrer=null;this.src='com/fallback.png';this.style.display='none'"></a>
           <a href="${visitorData.actionurlInput}"></a>
         </div>
         <button id="viewPost" onclick="viewPost(this);" style="background:eee;border:0;">📖Read</button>
@@ -45,7 +45,7 @@ ${visitorData.productDescriptionInput}
           </div>
           <b style="display:none;visibility:hidden;">@${visitorData.usernameInput} @${visitorData.productNameInput.replace(/\</g, '&lt;')} #${visitorData.productNameInput.replace(/\</g, '&lt;')}</b>
           <div class="owner" onclick="viewOrg(this)">
-            <img src="${visitorData.profImg}" alt="giniorg_admin photo">
+            <img src="${visitorData.profImg}" alt="giniorg_admin photo" onerror="this.onerrer=null;this.src='com/fallback.png'" />
             <span class="owner-name"><b>@${visitorData.usernameInput} <a href="../dashboard"> <small>_v</small></a></b></span>
           </div>
           <p class="click-count" id="click-count-${itemId}">${visitorData.clicks || 0} VIEWS</p>

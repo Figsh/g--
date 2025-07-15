@@ -21,16 +21,9 @@ const nextPosts = document.getElementById('readNext');
   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBzSd1j52M1gx27Wa8b0o7XPL4kejM7ilc",
-    authDomain: "imad-4bcd4.firebaseapp.com",
-    projectId: "imad-4bcd4",
-    storageBucket: "imad-4bcd4.firebasestorage.app",
-    messagingSenderId: "337645433222",
-    appId: "1:337645433222:web:f66274356a7ba3bc39bc07",
-    measurementId: "G-RP7VQ7PT4C"
-  };
-
-  const app = initializeApp(firebaseConfig);
+  const res = await fetch("/.netlify/functions/getFirebaseConfig");
+const config = await res.json();
+const app = initializeApp(config);
   const db = getFirestore(app);
   const auth = getAuth(app);
   const visitorsCollection = collection(db, "ginidev");

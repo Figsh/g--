@@ -1,5 +1,5 @@
 
- <button type="submit">Post Comment</button>
+ <button type="submit" id="cPostBtn-${itemId}" disabled='true'>Post Comment 🔓</button>
             </form>
           </bdo>
         </div>
@@ -10,7 +10,10 @@
       // Hide name input if user is logged in
       if (currentUserName) {
         const nameInputField = newDiv.querySelector(`#commenterName-${itemId}`);
+  const cPostBtn = newDiv.querySelector(`#cPostBtn-${itemId}`)
         if (nameInputField) nameInputField.parentElement.style.display = 'none';
+cPostBtn.disabled=false;
+cPostBtn.textContent='Post comment';
       }
 
       // Click tracking

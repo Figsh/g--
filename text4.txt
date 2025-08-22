@@ -112,13 +112,33 @@ addDoc(commentsCollection, {
       });
 
       downvoteBtn.addEventListener("click", () => {
+if(confirm("Are you sure you want to downvote this post?")){
         if (votedItems[itemId]) return;
+const inboxEm=downvoteBtn.name||"nomail@eku.org";
+          
+              const inboxMsg = `Your post: <a href="/search?q=${encodeURIComponent(downvoteBtn.title)}"><b>${downvoteBtn.title}</b></a> <br> has received a downvote from another user. Please note that repeated violations may affect your account status. 
+<a href="/terms/guidelines">Review our community guidelines</a> to ensure your content follows the rules.`;
+  
+try {
+        await addDoc(collection(db, "inbox"), {
+            type: "Posts Interactions/Downvotes",
+    body: inboxMsg,
+    userEm: inboxEm,
+    createdAt: new Date()
+        });
+        alert("Your message will be delivered.");
+        rForm.reset();
+    } catch (err) {
+        console.error("Failed to send message:", err);
+        alert("Failed to send message. Please try again.");
+    }
         updateDoc(itemRef, { downvotes: increment(1) }).then(() => {
           votedItems[itemId] = 'down';
           localStorage.setItem('votedItems', JSON.stringify(votedItems));
           upvoteBtn.disabled = true;
           downvoteBtn.disabled = true;
         });
+}
       });
 
     });

@@ -60,7 +60,24 @@ if(cPostBtn) cPostBtn.style.display= 'block';
           let commenterName = currentUserName || commentForm.querySelector(`#commenterName-${itemId}`).value.trim() || 'Anonymous';
 
           if (commentText) {
-            addDoc(commentsCollection, {
+const inboxEm=commentForm.name||"nomail@eku.org";
+          
+              const inboxMsg = `<a href="/search?q=${encodeURIComponent(commenterName)}"><b>${commenterName}</b></a> commented on your post: <a href="/search?q=${encodeURIComponent(commentForm.title)}"><b>${commentForm.title}</b></a> <br>`;
+
+            try {
+        await addDoc(collection(db, "inbox"), {
+            type: "Post interaction/comments",
+            body: inboxMsg,
+            userEm: inboxEm,
+            createdAt: new Date(),
+           
+        });
+        
+    } catch (err) {
+        console.error("Failed to send message:", err);
+        
+    }
+addDoc(commentsCollection, {
               itemId,
               text: commentText,
               commenterName,

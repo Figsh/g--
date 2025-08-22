@@ -52,7 +52,7 @@ ${visitorData.productDescriptionInput}
           <div class="vote-controls">
             <button class="upvote-btn" data-id="${itemId}">⬆ Upvote</button>
             <span id="upvotes-${itemId}">${visitorData.upvotes || 0}</span>
-            <button class="downvote-btn" data-id="${itemId}">⬇   </button>
+            <button class="downvote-btn" data-id="${itemId}" name="${visitorData.emailAddressInput||"nomail@eku.org"}" title="${visitorData.productNameInput||"No title"}">⬇   </button>
             <span id="downvotes-${itemId}">${visitorData.downvotes || 0}</span>${visitorData.actionurlInput? '<a href="'+visitorData.actionurlInput+'"><button class="learn-more" style="border:0.3px groove #43f;border-radius:5px;box-shadow: 0 0 0.5px #000;background:rgba(255,255,300,0.2);color: #97a;">Learn More </button></a>':''}
           </div>
         </div>

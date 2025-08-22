@@ -9,12 +9,16 @@
 
       // Hide name input if user is logged in
       
-        if (currentUserName) {
-        const nameInputField = newDiv.querySelector(`#commenterName-${itemId}`);
-  const cPostBtn = newDiv.querySelector(`#cPostBtn-${itemId}`);
-        if (nameInputField) nameInputField.parentElement.style.display = 'none';
-if(cPostBtn) cPostBtn.style.display= 'block';
-      }
+               if (currentUserName) {
+          
+          const nameInputField = newDiv.querySelector(`#commenterName-${itemId}`);
+          const commentInputField = newDiv.querySelector(`#commentText-${itemId}`);
+          
+          if (nameInputField) nameInputField.parentElement.style.display = 'none';
+          if (commentInputField){ commentInputField.disabled=false;
+                                commentInputField.placeholder="Post your comment";
+                                }
+        }
 
       // Click tracking
       newDiv.addEventListener('click', (event) => {

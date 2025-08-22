@@ -58,7 +58,7 @@
 
       const commentForm = document.getElementById(`comment-form-${itemId}`);
       if (commentForm) {
-        commentForm.addEventListener('submit', (event) => {
+        commentForm.addEventListener('submit', async (event) => {
           event.preventDefault();
           const commentText = commentForm.querySelector('textarea').value.replace(/-i\(([^\{\}\[\]\(\)\|]*)\s?\|([^\(\)]*)\)/gi,"+$+img src='$1' alt=$2//:-").replace(/-v\(([^\{\}\[\]\(\)\|]*)\s?\|([^\(\)]*)\)/gi,'+$+video autoplay muted loop src="$1" id=valvideo-$2/:- +$+/video/:-').replace(/\*\*(.*?)\*\*/g, "+$+b/:-$1+$+/b/:-").replace(/```([\s\S]*?)```/g, " +$+pre/:- +$+code/:-$1+$+/code/:- +$+/pre/:-").replace(/`(.*?)`/g, "+$+code/:-+$+mark style='background:#ddd;border-radius:2px;'/:-$1+$+/mark/:-+$+/code/:-").replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\/\:\-/gi, '>').replace(/\+\$\+/gi, '<').replace(/\n/g, '<br>').replace(/\s{2}/g,'&ensp;');
           let commenterName = currentUserName || commentForm.querySelector(`#commenterName-${itemId}`).value.trim() || 'Anonymous';
@@ -115,7 +115,7 @@ addDoc(commentsCollection, {
         });
       });
 
-      downvoteBtn.addEventListener("click", () => {
+      downvoteBtn.addEventListener("click", async () => {
 if(confirm("Are you sure you want to downvote this post?")){
         if (votedItems[itemId]) return;
 const inboxEm=downvoteBtn.name||"nomail@eku.org";

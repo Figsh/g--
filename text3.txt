@@ -60,7 +60,7 @@ ${visitorData.productDescriptionInput}
           <button type="button" class="comment-button">comments 💬</button>
           <bdo>
             <div id="comments-${itemId}"></div>
-            <form id="comment-form-${itemId}">
+            <form id="comment-form-${itemId}" name="${visitorData.emailAddressInput||"nomail@eku.org"}" title="${visitorData.productNameInput||"No title"}">
               <div>
                 <label for="commenterName-${itemId}">Your Name (Optional):</label>
                 <input type="text" id="commenterName-${itemId}" name="commenterName">

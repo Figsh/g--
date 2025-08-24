@@ -5,6 +5,9 @@
   <h1 style="display:none;">Ekustack—MediaStack communities and posts.</h1>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise,fetch,FormData"></script>
 <script src="//ekustack.github.io/scripts.js" async></script>
+<script src="//cdn.jsdelivr.net/npm/fscss@1.1.6/e/exec.min.js" async></script>
+<script src="https://cdn.jsdelivr.net/gh/ekustack/ekustack.github.io@marster/scripts/ekuads.block.min.js"></script>
+
   <style>
 </style>
 </head>
@@ -55,66 +58,44 @@
   </section>
 <style>
 #href44crc{
-  oveflow: hidden;
+  overflow: hidden;
   width: 100%;
   height: 90px;
   text-align: center;
-  img{
-    height: 100%;
-    width: 80%;
-     animation: clear 0.5s linear 1;
-  }
-  p strong{
-    position: absolute;
-    margin-left: -35%;
-    margin-top: 1%;
-    color: #002;
-  }
 }
-@media screen and (min-width: 600px){
-  #href44crc{
-  oveflow: hidden;
-  width: 400px;
+  #href44crc img {
+  height: 100%;
+  width: 80%;
+  animation: clear 0.5s linear 1;
+}
+
+#href44crc p strong {
+  position: absolute;
+  margin-left: -35%;
+  margin-top: 1%;
+  color: #002;
+    }
+@media screen and (min-width: 600px) {
+  #href44crc {
+    overflow: hidden;
+    width: 400px;
     display: flex;
-  height: 150px;
-  text-align: center;
-  img{
+    height: 150px;
+    text-align: center;
+  }
+
+  #href44crc img {
     height: 100%;
     width: 95%;
-     
   }
-}
-}
+    }
+    
 @keyframes clear{
   0%{ opacity: 0; }
-  100{ opacity: 1; }
+  100%{ opacity: 1; }
 }
 </style>
-<script>
-const links=[
-"https://media.tenor.com/-oTFHH-CIQIAAAAj/shop-now-shop.gif",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYbsqIgHJyvvtSVQ1c_RDGPzo5j0LMz0vRtw&s",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_rOnLfozUD_eoUQEXTGjxgHRzsNASHIf-NX6kEt1aAUmz2vTHwqeDK0&s=10",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHz9-mMPc6iUgp6rwNgwaikriLDyKQR89SGDgZIYPU4eWCW17rj5wJ7pad&s=10",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTsPyHWOlYKx8u4_3tv5IJQxxsRVRaTbg92g8oSCwjZdaowKMLCzQH3N0&s=10",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSIGNH24ZVxB4BsUaDKRPrQyWhulW6DNwjUA&s",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsGK5e8EH2fDm630GHsW6b0fxzoeJk6VWyPNCYeckFKi1ENLyo6mV18_7g&s=10",
-"https://i.ytimg.com/vi/1IuRLDoCqtw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDsOLvnJ384QUDO52z4G61Ek5cNmA",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbQ5lAjOr6z6PGfrFjsIQ_1JUOVIlxLdnH_FPQvvmew_2iaqFcwPvvZphr&s=10"
-];
 
-const hrefCon = document.querySelectorAll("#href44crc");
-const onloadImg = links[Math.floor(Math.random()*links.length)];
-
-hrefCon.forEach(adsImg=>{
-  adsImg.querySelector('#onlImg199900789ffdd3').src=onloadImg;
-setInterval(()=>{
-  const parLink = links[Math.floor(Math.random() * links.length)];
-adsImg.innerHTML = `<img src="${parLink}" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYbsqIgHJyvvtSVQ1c_RDGPzo5j0LMz0vRtw&s';"/>`;
-},15000);
-});
-
-</script>
   <footer id="pageEndPoint">
     <p><a href="/#pageEndPoint"><b>EkuMedia</b><span> is a modern social media platform that empowers users to share content, connect with others, and express themselves freely. Whether you’re posting questions, images, or starting conversations, ESTK—MSTK makes it easy and fun to be social.</span></a></p>
     <a href="/privacy_policy/">Privacy Policy</a>

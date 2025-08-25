@@ -1,5 +1,5 @@
 
- <button type="submit" id="cPostBtn-${itemId}" disabled='true'>Post Comment</button>
+ <button type="submit" id="cPostBtn-${itemId}" disabled='false'>Post Comment</button>
             </form>
           </bdo>
         </div>

@@ -36,7 +36,7 @@ const formatTimestamp = (timestamp) => {
           <img src="${visitorData.imagelinkInput}" alt="valtik_org_icon" onerror="this.onerrer=null;this.src='com/fallback.png';this.style.display='none'"></a>
           <a href="${visitorData.actionurlInput}"></a>
         </div>
-        <button id="viewPost" onclick="viewPost(this);" style="background:eee;border:0;">📖Read</button>
+        <button id="viewPost" onclick="viewPost(this);" style="background:eee;border:0;">📖focus</button>
         <div class="cic txt">
           <p><b>${visitorData.productNameInput.replace(/\</g, '&lt;')}</b></p>
           <div class="prodDes">
